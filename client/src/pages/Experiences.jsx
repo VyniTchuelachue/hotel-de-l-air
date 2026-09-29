@@ -25,12 +25,9 @@ export default function Experiences() {
                 className="aspect-[4/3] w-full transition-transform duration-[1.2s] ease-out hover:scale-[1.04]"
               />
             </div>
-            <div className="mt-6 flex gap-5">
-              <span className="font-display text-xl text-brass">{String(i + 1).padStart(2, '0')}</span>
-              <div>
-                <h2 className="font-display text-3xl md:text-4xl">{item.title}</h2>
-                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted">{item.text}</p>
-              </div>
+            <div className="mt-6">
+              <h2 className="font-display text-3xl md:text-4xl">{item.title}</h2>
+              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted">{item.text}</p>
             </div>
           </Reveal>
         ))}

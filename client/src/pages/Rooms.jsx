@@ -27,9 +27,7 @@ function RoomSection({ room, index }) {
         </Reveal>
 
         <Reveal delay={120}>
-          <Eyebrow>
-            {String(index + 1).padStart(2, '0')} · {t('meta.rooms')}
-          </Eyebrow>
+          <Eyebrow>{t('meta.rooms')}</Eyebrow>
           <h2 className="mt-4 font-display text-5xl font-medium md:text-6xl">{copy.name}</h2>
           <RoomMeta room={room} className="mt-5" />
           <p className="mt-2 flex items-center gap-1.5 text-[12.5px] text-ink/75">
