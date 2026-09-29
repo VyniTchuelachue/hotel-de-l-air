@@ -1,11 +1,18 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = process.env.DATA_DIR
-  ? path.resolve(process.env.DATA_DIR)
-  : path.resolve(__dirname, '../../data');
+
+// Vercel Functions can only write to the temp folder, which is wiped between instances:
+// there, the emails sent by notify.js are the lasting record of each request.
+function dataDir() {
+  if (process.env.DATA_DIR) return path.resolve(process.env.DATA_DIR);
+  if (process.env.VERCEL) return path.join(tmpdir(), 'hotel-de-l-air');
+  return path.resolve(__dirname, '../../data');
+}
+const DATA_DIR = dataDir();
 
 /**
  * Minimal JSON-file collection. Every write goes through a single queue so

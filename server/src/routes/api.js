@@ -92,7 +92,8 @@ router.post('/reservations', formLimiter, async (req, res) => {
   if (result.unavailable) return res.status(409).json({ error: 'unavailable' });
 
   const r = result.insert;
-  notifyHotel({
+  // Awaited (it never throws): on serverless hosts, work left running after the reply may be cut off.
+  await notifyHotel({
     subject: `Nouvelle demande de réservation ${r.reference} — ${r.name}`,
     replyTo: r.email,
     lines: [
@@ -133,7 +134,7 @@ router.post('/contact', formLimiter, async (req, res) => {
   const message = { id: randomBytes(8).toString('hex'), createdAt: new Date().toISOString(), ...contact };
   await messages.transaction(() => ({ insert: message }));
 
-  notifyHotel({
+  await notifyHotel({
     subject: `Nouveau message du site — ${message.subject || message.name}`,
     replyTo: message.email,
     lines: [

@@ -15,7 +15,10 @@ const clientDist = path.resolve(__dirname, '../../client/dist');
 
 const app = express();
 app.disable('x-powered-by');
-if (process.env.TRUST_PROXY) app.set('trust proxy', Number(process.env.TRUST_PROXY) || process.env.TRUST_PROXY);
+// Behind a proxy (always the case on Vercel) the visitor's IP is in X-Forwarded-For;
+// the rate limiter needs it, otherwise every visitor would share one limit.
+const trustProxy = process.env.TRUST_PROXY || (process.env.VERCEL ? '1' : '');
+if (trustProxy) app.set('trust proxy', Number(trustProxy) || trustProxy);
 
 app.use(
   helmet({
