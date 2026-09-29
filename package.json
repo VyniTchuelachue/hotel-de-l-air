@@ -1,0 +1,21 @@
+{
+  "name": "hotel-de-l-air",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site web de l'Hôtel de l'Air — Bonapriso, Douala",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c green,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "start": "npm start -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  }
+}

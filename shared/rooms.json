@@ -1,0 +1,31 @@
+{
+  "currency": "XAF",
+  "maxRoomsPerBooking": 5,
+  "maxNights": 30,
+  "rooms": [
+    {
+      "id": "executive",
+      "size": 30,
+      "bed": "queen",
+      "capacity": 2,
+      "price": 85000,
+      "inventory": 4
+    },
+    {
+      "id": "superieure",
+      "size": 28,
+      "bed": "double",
+      "capacity": 2,
+      "price": 70000,
+      "inventory": 6
+    },
+    {
+      "id": "standard",
+      "size": 24,
+      "bed": "double",
+      "capacity": 2,
+      "price": 55000,
+      "inventory": 8
+    }
+  ]
+}

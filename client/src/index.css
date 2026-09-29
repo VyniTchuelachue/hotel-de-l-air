@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream: #f7f3ec;
+  --color-sand: #efe8dc;
+  --color-line: #e2d8c8;
+  --color-ink: #1c1f1d;
+  --color-muted: #6e716a;
+  --color-forest: #1f3a2c;
+  --color-forest-dark: #142619;
+  --color-forest-light: #2e5241;
+  --color-brass: #b38b4d;
+
+  --animate-kenburns: kenburns 14s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  --animate-fade-up: fade-up 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-forest text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-forest;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Cormorant defaults to old-style figures; prices and references read better with lining ones. */
+.font-display {
+  font-variant-numeric: lining-nums;
+}
+
+/* Scroll reveal (see components/Reveal.jsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-kenburns,
+  .animate-fade-up {
+    animation: none;
+  }
+}
