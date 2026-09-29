@@ -27,7 +27,7 @@ export const images = {
   breakfast: '1642509600851-63d7b8f2c4b8',
   pool: '1623718649591-311775a30c43',
   gym: '1740895307920-0ba63bffc1c9',
-  douala: '/images/au-rythme-de-douala.png',
+  douala: '/images/au-rythme-de-douala.jpg',
   sunset: '1474302173007-293973cab927',
 };
 
